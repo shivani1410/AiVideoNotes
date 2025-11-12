@@ -1,0 +1,49 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">AI Video Notes</a>
+  </div>
+</nav>
+
+<div class="container py-4 d-flex flex-column vh-100">
+
+ 
+  <div class="flex-grow-1 overflow-auto mb-3 p-3 border rounded bg-light" #chatHistory>
+    <div *ngFor="let msg of messages" class="mb-4">
+
+     
+      <div class="d-flex justify-content-end">
+        <div class="p-3 bg-primary text-white rounded-3 shadow-sm mw-75">
+          <div *ngIf="msg.videoUrl">
+            <strong>You:</strong> {{ msg.videoUrl }}
+          </div>
+          <div *ngIf="msg.fileName">
+            <strong>You uploaded:</strong> {{ msg.fileName }}
+          </div>
+        </div>
+      </div>
+
+   
+      <div class="d-flex justify-content-start mt-2">
+        <div class="p-3 bg-white border rounded-3 shadow-sm mw-75">
+          <div [innerHTML]="msg.notes"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+ <div class="border-top pt-3">
+  <div class="border-top pt-3">
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" [(ngModel)]="text"
+        placeholder="Paste YouTube URL here or Ask Question" />
+      <button class="btn btn-primary" (click)="onSubmit()">Send</button>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <input class="form-control" type="file" accept="video/*" (change)="onFileSelected($event)" />
+      <button class="btn btn-outline-success" (click)="onUpload()" [disabled]="!selectedFile">
+        Upload File
+      </button>
+    </div>
+  </div>
+</div>

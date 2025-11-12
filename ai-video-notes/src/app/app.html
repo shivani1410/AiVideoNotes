@@ -1,0 +1,83 @@
+<!-- 
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">VideoApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNav" class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow rounded-4">
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4">Process YouTube Video</h3>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Enter YouTube URL"
+                            [(ngModel)]="videoUrl" />
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="loading">
+                            {{ loading ? 'Processing...' : 'Start Processing' }}
+                        </button>
+                    </div>
+
+                    <div *ngIf="loading" class="mt-4">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="upload-container">
+                        <div class="upload-container mt-4">
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="videoFile" accept="video/*"
+                                    (change)="onFileSelected($event)" />
+                                <button class="btn btn-success" type="button" (click)="onUpload()"
+                                    [disabled]="!selectedFile || loading">
+                                    <i class="bi bi-upload"></i> Upload
+                                </button>
+                            </div>
+
+                            <div *ngIf="progress > 0 && progress < 100" class="mt-3">
+                                <label class="form-label">Uploading: {{ progress }}%</label>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                        role="progressbar" [style.width.%]="progress"></div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="loading && progress === 100" class="mt-3 text-muted">
+                                <div class="spinner-border spinner-border-sm text-primary me-2"></div>
+                                Processing video, please wait...
+                            </div>
+                        </div>
+
+                    </div>
+                    <div *ngIf="result" class="alert alert-success mt-4 text-start" [innerHTML]="formattedResult"></div>
+                    <div *ngIf="error" class="alert alert-danger mt-4 text-center">
+                        {{ error }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- <button class="btn btn-primary" (click)="onSubmit()" >Click
+    
+</button> -->
+<app-chat-notes></app-chat-notes>

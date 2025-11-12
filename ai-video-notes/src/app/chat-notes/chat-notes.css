@@ -1,0 +1,12 @@
+.mw-75 {
+  max-width: 75%;
+  word-wrap: break-word;
+}
+
+.container {
+  max-width: 900px;
+}
+
+#chatHistory {
+  scroll-behavior: smooth;
+}
