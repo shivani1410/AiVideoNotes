@@ -121,12 +121,36 @@ def summarize_text(text):
     response=groq_client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=[
-            {"role":"system","content":"You are an assistant that summarizes transcripts and make clear bullet points notes."},
+            {"role":"system","content":"You are an assistant that summarizes transcripts and make clear notes."},
             {"role":"user","content":prompt}
         ],
         max_tokens=150
     )
+    chat_history.append({
+        "role":"assistant",
+        "content":response.choices[0].message.content 
+    })
     return response.choices[0].message.content  
+chat_history=[
+    {
+        "role":"system",
+        "content":"You are a helpful assistant that helps users by answering questions and clearing their doubts based on the notes or transcript provied"
+    }
+]
+def chat_bot(text):
+    chat_history.append({
+        "role":"user",
+        "content":text
+    })
+    response=groq_client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=chat_history,
+        max_tokens=150
+    )
+    assistant_response=response.choices[0].message.content
+    chat_history.append({"role":"assistant","content":assistant_response})
+    return response.choices[0].message.content
+
 
 def get_file_hash(file_path:str)->str:
     hasher=hashlib.md5()
@@ -190,4 +214,11 @@ async def process_video_file(video_file:UploadFile=File(...)):
             return {"summary":summary}
     except Exception as e:
         JSONResponse({"error":str(e)},status_code=500)
+
+@app.post("/chat_assistant")
+async def chat_assistant(question:str=Form(...)):
+    response=chat_bot(question)
+    return {"summary":response}
+    
                 
+
